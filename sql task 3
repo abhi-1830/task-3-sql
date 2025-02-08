@@ -1,0 +1,30 @@
+/*We’ll create two additional tables (source_table and destination_table)*/
+-- Create source table for migration since we already have source table named customers we take as the source table
+desc customers;
+select*from customers;
+
+-- Create destination table for migration
+CREATE TABLE destination_table (
+    cust_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    age INT,
+    gender varchar(7),
+    city varchar(20),
+    state varchar(20),
+    memb_type varchar(20)
+
+);
+
+-- Check data in source_table
+SELECT * FROM customers;
+
+-- Check data in destination_table
+SELECT * FROM destination_table;
+
+/*Migration Query*/
+
+-- Migrate data from source_table to destination_table
+INSERT INTO destination_table (cust_id,name, age,gender, city,state,memb_type)
+SELECT cust_id,name, age,gender, city,state,memb_type
+FROM customers;
+select * from destination_table;
